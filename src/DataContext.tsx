@@ -26,7 +26,7 @@ const DataContext = createContext<DataContextValue | null>(null);
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   // Cart Section
   // Add to cart and increase quantity
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(array);
   const handleClick = (id: number): void => {
     const existingItem = cartItems.find((item) => item.id === id);
     if (existingItem) {
