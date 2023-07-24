@@ -1,11 +1,10 @@
 import "./singlePage.css";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import DataContext from "../../DataContext";
+import { useContext, useEffect, useState } from "react";
+import DataContext, { CartItem } from "../../DataContext";
 
 function SinglePage() {
   const { id } = useParams();
-
   const contextValue = useContext(DataContext);
   const { singleProduct } = contextValue ?? {};
   const productId = id ? parseInt(id, 10) : null;
@@ -16,20 +15,29 @@ function SinglePage() {
     }
   }, [productId]);
 
-  const cartItems = contextValue ? contextValue.cartItems : [];
-  console.log(cartItems);
-  console.log(contextValue?.cartItems);
+  const [singleProductUse, setSingleProductUse] = useState<CartItem | null>(
+    null
+  );
+
+  useEffect(() => {
+    setSingleProductUse(contextValue ? contextValue.singleProductUse : null);
+  }, [contextValue]);
 
   return (
     <>
-      {cartItems.map((cartItem) => (
+      {singleProductUse && (
         <section id="prodetails">
           <div className="single-pro-img">
-            <img src={cartItem.img[0]} width="100%" id="mainImg" alt="" />
+            <img
+              src={singleProductUse?.img[0]}
+              width="100%"
+              id="mainImg"
+              alt=""
+            />
             <div className="small-img-group">
               <div className="small-img-col">
                 <img
-                  src={cartItem.img[1]}
+                  src={singleProductUse?.img[1]}
                   width="100%"
                   className="small-img"
                   alt=""
@@ -37,7 +45,7 @@ function SinglePage() {
               </div>
               <div className="small-img-col">
                 <img
-                  src={cartItem.img[2]}
+                  src={singleProductUse?.img[2]}
                   width="100%"
                   className="small-img"
                   alt=""
@@ -45,7 +53,7 @@ function SinglePage() {
               </div>
               <div className="small-img-col">
                 <img
-                  src={cartItem.img[3]}
+                  src={singleProductUse?.img[3]}
                   width="100%"
                   className="small-img"
                   alt=""
@@ -53,7 +61,7 @@ function SinglePage() {
               </div>
               <div className="small-img-col">
                 <img
-                  src={cartItem.img[4]}
+                  src={singleProductUse?.img[4]}
                   width="100%"
                   className="small-img"
                   alt=""
@@ -63,21 +71,25 @@ function SinglePage() {
           </div>
 
           <div className="single-pro-details">
-            <h6>Home / {cartItem.category}</h6>
-            <h4>{cartItem.name}</h4>
-            <h2>${cartItem.price}</h2>
+            <h6>Home / {singleProductUse?.category}</h6>{" "}
+            {/* Use optional chaining (?.) here */}
+            <h4>{singleProductUse?.name}</h4>{" "}
+            {/* Use optional chaining (?.) here */}
+            <h2>${singleProductUse?.price}</h2>{" "}
+            {/* Use optional chaining (?.) here */}
             <select>
-              {cartItem.sizes.map((size) => (
-                <option>{size}</option>
+              {singleProductUse?.sizes.map((size) => (
+                <option key={size}>{size}</option>
               ))}
             </select>
             <input type="number" value="1" />
             <button className="normol">Add To Cart</button>
             <h4>Product Details</h4>
-            <span>{cartItem.des}</span>
+            <span>{singleProductUse?.des}</span>{" "}
+            {/* Use optional chaining (?.) here */}
           </div>
         </section>
-      ))}
+      )}
     </>
   );
 }

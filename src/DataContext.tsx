@@ -7,9 +7,10 @@ interface DataContextValue {
   removeItem: (id: number) => void;
   singleProduct: (id: number) => void;
   total: number;
+  singleProductUse: CartItem | null;
 }
 
-interface CartItem {
+export interface CartItem {
   id: number;
   img: string[];
   category: string;
@@ -59,9 +60,12 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   // Cart section end
 
   // Single product
+  const [singleProductUse, setSingleProductUse] = useState<CartItem | null>(
+    null
+  );
   const singleProduct = (id: number) => {
     const singleReady = cartItems.filter((cartItem) => cartItem.id === id);
-    setCartItems(singleReady);
+    setSingleProductUse(singleReady[0]);
   };
 
   const contextValue: DataContextValue = {
@@ -69,6 +73,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     cartItems,
     removeItem,
     singleProduct,
+    singleProductUse,
     total,
   };
 
