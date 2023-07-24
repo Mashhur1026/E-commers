@@ -1,0 +1,32 @@
+#cargo .des {
+  padding: 40px 80px;
+}
+
+#cargo .des h1 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#cargo h1,
+#cargo h2 {
+  color: #1a1a1a;
+  letter-spacing: 1px;
+}
+
+#cargo p {
+  text-indent: 50px;
+  text-align: justify;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 770px) {
+  #cargo .des {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  #cargo .des {
+    padding: 20px;
+  }
+}
