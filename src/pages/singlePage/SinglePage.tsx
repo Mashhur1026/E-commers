@@ -7,7 +7,6 @@ function SinglePage() {
   const { id } = useParams();
   const contextValue = useContext(DataContext);
   const { singleProduct } = contextValue ?? {};
-  const { singleAddCard } = contextValue ?? {};
   const productId = id ? parseInt(id, 10) : null;
 
   const [singleProductUse, setSingleProductUse] = useState<CartItem | null>(
