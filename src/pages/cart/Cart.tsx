@@ -32,7 +32,7 @@ function Cart() {
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td>
-                  <button onClick={() => removeItem?.(item.id)}>
+                  <button onClick={() => removeItem?.(item)}>
                     <i className="far fa-times-circle"></i>
                   </button>
                 </td>

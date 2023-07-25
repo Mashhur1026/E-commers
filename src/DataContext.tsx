@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 interface DataContextValue {
   handleClick: (id: number) => void;
   cartItems: CartItem[];
-  removeItem: (id: number) => void;
+  removeItem: (newItem: CartItem) => void;
   singleProduct: (id: number) => void;
   total: number;
   singleProductUse: CartItem | null;
@@ -54,8 +54,13 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     setTotal(newTotal);
   }, [cartItems]);
   // RemoveFrom card
-  const removeItem = (id: number) => {
-    const removedArray = cartItems.filter((cartItem) => cartItem.id !== id);
+  const removeItem = (newItem: CartItem) => {
+    const removedArray = cartItems.filter(
+      (item) =>
+        item.id !== newItem.id &&
+        item.sizes !== newItem.sizes &&
+        item.img !== newItem.img
+    );
     setCartItems(removedArray);
   };
   // Cart section end
@@ -71,12 +76,19 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Single product addToCard
   const singleAddCard = (newItem: CartItem) => {
-    const existingItem = cartItems.find((item) => item.id === newItem.id);
+    const existingItem = cartItems.find(
+      (item) =>
+        item.id === newItem.id &&
+        item.sizes === newItem.sizes &&
+        item.img === newItem.img
+    );
     if (existingItem) {
       // Increase quantity of existing item
       setCartItems((prevCartItems) =>
         prevCartItems.map((item) =>
-          item.id === newItem.id
+          item.id === newItem.id &&
+          item.sizes === newItem.sizes &&
+          item.img === newItem.img
             ? { ...item, quantity: item.quantity + newItem.quantity }
             : item
         )
@@ -86,6 +98,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
       setCartItems((prevCartItems) => [...prevCartItems, newItem]);
     }
   };
+
   const contextValue: DataContextValue = {
     handleClick,
     cartItems,
