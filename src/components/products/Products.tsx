@@ -97,9 +97,11 @@ function Products() {
     }
   }, [name]);
 
+  const categoryName = name ? name : "Our Products";
+
   return (
     <section id="product1">
-      <h2>{"Our Products"}</h2>
+      <h2>{categoryName}</h2>
       <p>Summer Collection New Morden Design</p>
       <div className="pro-container">
         {categoryProduct.map((item) => (

@@ -8,6 +8,7 @@ interface DataContextValue {
   singleProduct: (id: number) => void;
   total: number;
   singleProductUse: CartItem | null;
+  singleAddCard: (newItem: CartItem) => void;
 }
 
 export interface CartItem {
@@ -27,7 +28,7 @@ const DataContext = createContext<DataContextValue | null>(null);
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   // Cart Section
   // Add to cart and increase quantity
-  const [cartItems, setCartItems] = useState<CartItem[]>(array);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const handleClick = (id: number): void => {
     const existingItem = cartItems.find((item) => item.id === id);
     if (existingItem) {
@@ -64,10 +65,27 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     null
   );
   const singleProduct = (id: number) => {
-    const singleReady = cartItems.filter((cartItem) => cartItem.id === id);
+    const singleReady = array.filter((cartItem) => cartItem.id === id);
     setSingleProductUse(singleReady[0]);
   };
 
+  // Single product addToCard
+  const singleAddCard = (newItem: CartItem) => {
+    const existingItem = cartItems.find((item) => item.id === newItem.id);
+    if (existingItem) {
+      // Increase quantity of existing item
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item.id === newItem.id
+            ? { ...item, quantity: item.quantity + newItem.quantity }
+            : item
+        )
+      );
+    } else {
+      // Add new item to cart
+      setCartItems((prevCartItems) => [...prevCartItems, newItem]);
+    }
+  };
   const contextValue: DataContextValue = {
     handleClick,
     cartItems,
@@ -75,6 +93,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     singleProduct,
     singleProductUse,
     total,
+    singleAddCard,
   };
 
   return (
