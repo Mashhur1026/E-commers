@@ -2,12 +2,11 @@ import { array } from "../src/components/products/Products";
 import { createContext, useEffect, useState } from "react";
 
 interface DataContextValue {
-  handleClick: (id: number) => void;
   cartItems: CartItem[];
   removeItem: (newItem: CartItem) => void;
   singleProduct: (id: number) => void;
   total: number;
-  singleProductUse: CartItem | null;
+  singleProductUse: CartItem[];
   singleAddCard: (newItem: CartItem) => void;
 }
 
@@ -26,24 +25,7 @@ export interface CartItem {
 const DataContext = createContext<DataContextValue | null>(null);
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  // Cart Section
-  // Add to cart and increase quantity
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const handleClick = (id: number): void => {
-    const existingItem = cartItems.find((item) => item.id === id);
-    if (existingItem) {
-      // increase quantity
-      setCartItems((prevCartItems) =>
-        prevCartItems.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      // Add to card
-      const filteredProducts = array.filter((item) => item.id === id);
-      setCartItems((prevCartItems) => [...prevCartItems, ...filteredProducts]);
-    }
-  };
   //Total card
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -55,52 +37,51 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   }, [cartItems]);
   // RemoveFrom card
   const removeItem = (newItem: CartItem) => {
-    const removedArray = cartItems.filter(
-      (item) =>
-        item.id !== newItem.id &&
-        item.sizes !== newItem.sizes &&
-        item.img !== newItem.img
-    );
+    const removedArray = cartItems.filter((item) => {
+      const idMatch = item.id === newItem.id;
+      const sizesMatch = item.sizes.every(
+        (size, index) => size === newItem.sizes[index]
+      );
+      const imgMatch = item.img.every(
+        (img, index) => img === newItem.img[index]
+      );
+
+      return !(idMatch && sizesMatch && imgMatch);
+    });
+
     setCartItems(removedArray);
   };
-  // Cart section end
 
-  // Single product
-  const [singleProductUse, setSingleProductUse] = useState<CartItem | null>(
-    null
-  );
+  // Add to card
+  const [singleProductUse, setSingleProductUse] = useState<CartItem[]>(array);
   const singleProduct = (id: number) => {
     const singleReady = array.filter((cartItem) => cartItem.id === id);
-    setSingleProductUse(singleReady[0]);
+    setSingleProductUse(singleReady);
   };
-
-  // Single product addToCard
   const singleAddCard = (newItem: CartItem) => {
     const existingItem = cartItems.find(
       (item) =>
         item.id === newItem.id &&
-        item.sizes === newItem.sizes &&
-        item.img === newItem.img
+        item.sizes.every((size, index) => size === newItem.sizes[index]) &&
+        item.img.every((img, index) => img === newItem.img[index])
     );
+
     if (existingItem) {
-      // Increase quantity of existing item
       setCartItems((prevCartItems) =>
         prevCartItems.map((item) =>
           item.id === newItem.id &&
-          item.sizes === newItem.sizes &&
-          item.img === newItem.img
+          item.sizes.every((size, index) => size === newItem.sizes[index]) &&
+          item.img.every((img, index) => img === newItem.img[index])
             ? { ...item, quantity: item.quantity + newItem.quantity }
             : item
         )
       );
     } else {
-      // Add new item to cart
       setCartItems((prevCartItems) => [...prevCartItems, newItem]);
     }
   };
 
   const contextValue: DataContextValue = {
-    handleClick,
     cartItems,
     removeItem,
     singleProduct,

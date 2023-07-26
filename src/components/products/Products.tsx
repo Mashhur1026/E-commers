@@ -83,7 +83,6 @@ function Products() {
   if (!contextValue) {
     throw new Error("Context is not defined");
   }
-  const { handleClick } = contextValue;
   const [categoryProduct, setCategoryProduct] = useState<Prop[]>([]);
 
   const { name } = useParams();
@@ -120,13 +119,13 @@ function Products() {
                 </div>
                 <h4>${item.price}</h4>
               </div>
+              <button>
+                <i className="fal fa-shopping-cart cart"></i>
+              </button>
             </Link>
             <Link className="cargo" to={`/Cargo`}>
               + cargo
             </Link>
-            <button onClick={() => handleClick(item.id)}>
-              <i className="fal fa-shopping-cart cart"></i>
-            </button>
           </div>
         ))}
       </div>

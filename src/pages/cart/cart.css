@@ -45,6 +45,7 @@
 #cart table td:nth-child(1) button {
   border: none;
   background-color: transparent;
+  color: crimson;
 }
 
 #cart table td:nth-child(4) select {

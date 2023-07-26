@@ -9,7 +9,7 @@ function SinglePage() {
   const { singleProduct } = contextValue ?? {};
   const productId = id ? parseInt(id, 10) : null;
 
-  const [singleProductUse, setSingleProductUse] = useState<CartItem | null>(
+  const [singleProductUse, setSingleProductUse] = useState<CartItem[] | null>(
     null
   );
 
@@ -22,12 +22,12 @@ function SinglePage() {
   useEffect(() => {
     setSingleProductUse(contextValue ? contextValue.singleProductUse : null);
     if (contextValue?.singleProductUse) {
-      setMainImgUrl(contextValue.singleProductUse.img[0]);
+      setMainImgUrl(contextValue.singleProductUse?.[0].img[0]);
     }
   }, [contextValue]);
 
   const [mainImgUrl, setMainImgUrl] = useState<string>(
-    singleProductUse?.img[0] || ""
+    singleProductUse?.[0].img[0] || ""
   );
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -40,15 +40,15 @@ function SinglePage() {
   const handleAddToCart = () => {
     if (singleProductUse && selectedSize) {
       const newItem: CartItem = {
-        id: singleProductUse.id,
+        id: singleProductUse[0].id,
         img: [mainImgUrl],
-        category: singleProductUse.category,
-        cname: singleProductUse.cname,
-        name: singleProductUse.name,
-        price: singleProductUse.price,
+        category: singleProductUse[0].category,
+        cname: singleProductUse[0].cname,
+        name: singleProductUse[0].name,
+        price: singleProductUse[0].price,
         quantity: quantity,
         sizes: [selectedSize],
-        des: singleProductUse.des,
+        des: singleProductUse[0].des,
       };
       contextValue?.singleAddCard?.(newItem);
     }
@@ -62,10 +62,10 @@ function SinglePage() {
               src={mainImgUrl}
               width="100%"
               id="mainImg"
-              alt={singleProductUse.name}
+              alt={singleProductUse[0].name}
             />
             <div className="small-img-group">
-              {singleProductUse?.img.map((item) => (
+              {singleProductUse?.[0].img.map((item) => (
                 <div
                   className="small-img-col"
                   key={item}
@@ -75,7 +75,7 @@ function SinglePage() {
                     src={item}
                     width="100%"
                     className="small-img"
-                    alt={singleProductUse.name}
+                    alt={singleProductUse[0].name}
                   />
                 </div>
               ))}
@@ -83,12 +83,12 @@ function SinglePage() {
           </div>
 
           <div className="single-pro-details">
-            <h6>Home / {singleProductUse?.category}</h6>
-            <h4>{singleProductUse?.name}</h4>
-            <h2>${singleProductUse?.price}</h2>
+            <h6>Home / {singleProductUse?.[0].category}</h6>
+            <h4>{singleProductUse?.[0].name}</h4>
+            <h2>${singleProductUse?.[0].price}</h2>
             <select onChange={(e) => setSelectedSize(e.target.value)}>
               <option value="">Select Size</option>
-              {singleProductUse?.sizes.map((size) => (
+              {singleProductUse?.[0].sizes.map((size) => (
                 <option key={size} value={size}>
                   {size}
                 </option>
@@ -101,7 +101,7 @@ function SinglePage() {
             />
             <button onClick={handleAddToCart}>Add To Cart</button>
             <h4>Product Details</h4>
-            <span>{singleProductUse?.des}</span>
+            <span>{singleProductUse?.[0].des}</span>
           </div>
         </section>
       )}

@@ -1,28 +1,21 @@
 import { useContext } from "react";
-import BlogComponent from "../../components/blogC/BlogComponent";
-import "./cart.css";
+import "./checkout.css";
 import DataContext from "../../DataContext";
 import { Link } from "react-router-dom";
 
-function Cart() {
+function CheckOut() {
   const contextValue = useContext(DataContext);
   const cartItems = contextValue ? contextValue.cartItems : [];
-  const { removeItem } = contextValue ?? {};
   const total = contextValue ? contextValue.total : 0;
+
   return (
     <>
-      <BlogComponent
-        title="#lets_talk"
-        text="Lorem ipsum dolor, sit amet consectetur adipisicing elit."
-        img="about-bg"
-      />
-      <section id="cart">
+      <section id="chechout">
+        <h1>Checkout</h1>
         <table width="100%">
           <thead>
             <tr>
-              <td></td>
               <td>Rasm</td>
-              <td>Ism</td>
               <td>Razmer</td>
               <td>Narx</td>
               <td>Miqdor</td>
@@ -32,34 +25,17 @@ function Cart() {
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td>
-                  <button onClick={() => removeItem?.(item)}>
-                    <i className="far fa-times-circle"></i>
-                  </button>
-                </td>
-                <td>
                   <img src={item.img[0]} alt="" />
                 </td>
-                <td>{item.name}</td>
-                <td>
-                  <select>
-                    {item.sizes.map((size) => (
-                      <option key={size} value={size}>
-                        {size}
-                      </option>
-                    ))}
-                  </select>
-                </td>
+                <td>{item.sizes}</td>
                 <td>${item.price}</td>
-                <td>
-                  <input type="number" value={item.quantity} />
-                </td>
+                <td>{item.quantity}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </section>
-
-      <section id="cart-add">
+      <section id="checkoutTotal">
         <div id="subtotal">
           <h3>Cart Total</h3>
           <table>
@@ -82,18 +58,30 @@ function Cart() {
               </tr>
             </tbody>
           </table>
-          <div className="cartCargo">
-            <Link to={`/Checkout`}>
-              <button className="normol">Proceed to checkout</button>
-            </Link>
+          <div>
             <Link to={`/Cargo`}>
               <h4>What is cargo?</h4>
             </Link>
           </div>
         </div>
       </section>
+      <section id="checkout-form-details">
+        <form>
+          <h2>Buyurtma uchun kerakli Malumotlar</h2>
+          <span>Iltmos anqlik blan toldring</span>
+          <input type="text" placeholder="Isminggiz" />
+          <input type="text" placeholder="Familiyanggiz" />
+          <input
+            placeholder="Telefon Raqaminggiz"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+          />
+          <textarea placeholder="Qoshmcha malumot"></textarea>
+          <button>Submit</button>
+        </form>
+      </section>
     </>
   );
 }
 
-export default Cart;
+export default CheckOut;

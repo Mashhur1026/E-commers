@@ -1,0 +1,181 @@
+#chechout {
+  padding: 40px 80px;
+}
+
+#chechout h1 {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 40px 0;
+}
+
+#chechout table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  white-space: nowrap;
+}
+
+#chechout table img {
+  width: 70%;
+}
+
+#chechout table thead {
+  border: 1px solid #e2e9e1;
+  border-left: none;
+  border-right: none;
+}
+
+#chechout table thead td {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 18px 0;
+}
+
+#chechout table tbody td {
+  font-size: 15px;
+}
+
+#chechout table td {
+  width: 110px;
+  text-align: center;
+}
+
+#checkoutTotal {
+  display: flex;
+  justify-content: center;
+  padding: 40px 80px;
+}
+
+#checkoutTotal #subtotal {
+  width: 60%;
+  margin-bottom: 30px;
+  text-decoration: none;
+}
+#checkoutTotal #subtotal a {
+  text-decoration: none;
+}
+
+#subtotal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#subtotal table td {
+  width: 50%;
+  border: 1px solid #e2e9e1;
+  font-size: 16px;
+  padding: 10px;
+}
+
+#checkoutTotal h4 {
+  color: crimson;
+  letter-spacing: 1px;
+}
+
+#checkout-form-details {
+  display: flex;
+  justify-content: center;
+}
+
+#checkout-form-details form {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#checkout-form-details form span {
+  font-size: 12px;
+  padding: 20px 0;
+}
+
+#checkout-form-details form input,
+#checkout-form-details form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  outline: none;
+  margin-bottom: 20px;
+  border: 1px solid #e1e1e1;
+}
+
+#checkout-form-details form button {
+  background: #088178;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 15px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.2s;
+}
+
+@media (max-width: 750px) {
+  #chechout {
+    padding: 20px;
+  }
+
+  #chechout h1 {
+    margin: 15px 0 25px 0;
+  }
+
+  #checkoutTotal #subtotal {
+    width: 80%;
+  }
+
+  #checkout-form-details form button {
+    font-size: 12px;
+    padding: 13px 18px;
+  }
+
+  #checkout-form-details form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 570px) {
+  #chechout {
+    padding: 20px;
+  }
+
+  #chechout table tbody td {
+    font-size: 10px;
+  }
+
+  #chechout table thead td {
+    font-size: 10px;
+  }
+
+  #chechout table td {
+    width: 60px;
+    text-align: center;
+  }
+
+  #checkoutTotal #subtotal {
+    width: 100%;
+  }
+
+  #checkoutTotal {
+    padding: 10px;
+  }
+
+  #checkoutTotal h4 {
+    color: crimson;
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+
+  #checkout-form-details form h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 320px) {
+  #chechout {
+    padding: 5px;
+  }
+}
