@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./checkout.css";
 import DataContext from "../../DataContext";
 import { Link } from "react-router-dom";
@@ -7,6 +7,37 @@ function CheckOut() {
   const contextValue = useContext(DataContext);
   const cartItems = contextValue ? contextValue.cartItems : [];
   const total = contextValue ? contextValue.total : 0;
+
+  interface FormValues {
+    ismingiz: string;
+    familiyangiz: string;
+    telefon: string;
+    qoshmcha: string;
+  }
+
+  const [formValues, setFormValues] = useState<FormValues>({
+    ismingiz: "",
+    familiyangiz: "",
+    telefon: "",
+    qoshmcha: "",
+  });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("Form values:", formValues);
+    console.log("Total:", total);
+    console.log("Cart items:", cartItems);
+  };
 
   return (
     <>
@@ -66,17 +97,35 @@ function CheckOut() {
         </div>
       </section>
       <section id="checkout-form-details">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h2>Buyurtma uchun kerakli Malumotlar</h2>
           <span>Iltmos anqlik blan toldring</span>
-          <input type="text" placeholder="Isminggiz" />
-          <input type="text" placeholder="Familiyanggiz" />
           <input
-            placeholder="Telefon Raqaminggiz"
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            onChange={handleChange}
+            type="text"
+            placeholder="Isminggiz"
+            name="ismingiz"
+            required
           />
-          <textarea placeholder="Qoshmcha malumot"></textarea>
+          <input
+            onChange={handleChange}
+            type="text"
+            placeholder="Familiyanggiz"
+            name="familiyangiz"
+            required
+          />
+          <input
+            onChange={handleChange}
+            placeholder="Telefon Raqaminggiz"
+            name="telefon"
+            type="tel"
+            required
+          />
+          <textarea
+            onChange={handleChange}
+            placeholder="Qoshmcha malumot"
+            name="qoshmcha"
+          ></textarea>
           <button>Submit</button>
         </form>
       </section>

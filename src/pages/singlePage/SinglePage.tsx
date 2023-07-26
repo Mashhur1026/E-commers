@@ -86,7 +86,7 @@ function SinglePage() {
             <h6>Home / {singleProductUse?.[0].category}</h6>
             <h4>{singleProductUse?.[0].name}</h4>
             <h2>${singleProductUse?.[0].price}</h2>
-            <select onChange={(e) => setSelectedSize(e.target.value)}>
+            <select required onChange={(e) => setSelectedSize(e.target.value)}>
               <option value="">Select Size</option>
               {singleProductUse?.[0].sizes.map((size) => (
                 <option key={size} value={size}>
