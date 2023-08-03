@@ -3,11 +3,10 @@ import "./banner.css";
 function Banner() {
   return (
     <section id="banner">
-      <h4>Repair Services</h4>
+      <h4>Zargarlik Buyumlari</h4>
       <h2>
-        Up to <span>70% Off</span> - All T-Shirts & Accessories
+        <span>7% gacha chegirma</span> - Barcha Zargarlik Buyumlari
       </h2>
-      <button>Explore More</button>
     </section>
   );
 }

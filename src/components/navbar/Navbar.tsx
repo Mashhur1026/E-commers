@@ -8,11 +8,11 @@ function Navbar() {
 
   const navLinks = [
     {
-      name: "Home",
+      name: "Asosiy",
       path: "/",
     },
     {
-      name: "Shop",
+      name: "Harid qilish",
       path: "/Shop",
     },
     {
@@ -20,11 +20,11 @@ function Navbar() {
       path: "/Blog",
     },
     {
-      name: "About",
+      name: "Biz haqimizda",
       path: "/About",
     },
     {
-      name: "Contact",
+      name: "Aloqa",
       path: "/Contact",
     },
   ];

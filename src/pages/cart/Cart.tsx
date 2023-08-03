@@ -3,6 +3,7 @@ import BlogComponent from "../../components/blogC/BlogComponent";
 import "./cart.css";
 import DataContext from "../../DataContext";
 import { Link } from "react-router-dom";
+import Notiflix from "notiflix";
 
 function Cart() {
   const contextValue = useContext(DataContext);
@@ -32,7 +33,12 @@ function Cart() {
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td>
-                  <button onClick={() => removeItem?.(item)}>
+                  <button
+                    onClick={() => {
+                      removeItem?.(item);
+                      Notiflix.Notify.failure("Tavar savatdan olindi");
+                    }}
+                  >
                     <i className="far fa-times-circle"></i>
                   </button>
                 </td>
@@ -61,20 +67,20 @@ function Cart() {
 
       <section id="cart-add">
         <div id="subtotal">
-          <h3>Cart Total</h3>
+          <h3>Savat jami</h3>
           <table>
             <tbody>
               <tr>
-                <td>Cart Subtotal</td>
+                <td>Savat jami</td>
                 <td>${total}</td>
               </tr>
               <tr>
                 <td>Cargo</td>
-                <td>Tavarga qarab</td>
+                <td>Mahsulotga qarab</td>
               </tr>
               <tr>
                 <td>
-                  <strong>Total</strong>
+                  <strong>Jami</strong>
                 </td>
                 <td>
                   <strong>${total}</strong>
@@ -83,12 +89,25 @@ function Cart() {
             </tbody>
           </table>
           <div className="cartCargo">
-            <Link to={`/Checkout`}>
-              <button className="normol">Proceed to checkout</button>
-            </Link>
-            <Link to={`/Cargo`}>
-              <h4>What is cargo?</h4>
-            </Link>
+            {cartItems.length !== 0 ? (
+              <>
+                <Link to={`/Checkout`}>
+                  <button className="normol">To'lov</button>
+                </Link>
+                <Link to={`/Cargo`}>
+                  <h4>Cargo nima?</h4>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={`/Shop`}>
+                  <button className="normol">Xarid qilish</button>
+                </Link>
+                <a>
+                  <h4>Siz hali hech qanday xarid qilmagansiz!</h4>
+                </a>
+              </>
+            )}
           </div>
         </div>
       </section>

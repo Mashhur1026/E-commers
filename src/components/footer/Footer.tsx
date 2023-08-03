@@ -7,39 +7,37 @@ function Footer() {
     <footer>
       <div className="col">
         <img className="logo" src={logo} alt="logo" />
-        <h4>Contact</h4>
+        <h4>Aloqa</h4>
         <p>
-          <strong>Address: </strong>Lorem ipsum dolor, sit amet consectetur
+          <strong>Manzil: </strong>Xorazm viloyati
         </p>
         <p>
-          <strong>Phone: </strong> +99890999999 / +99899999999
+          <strong>Telefon: </strong> +99890999999 / +99899999999
         </p>
         <p>
-          <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+          <strong>Soat: </strong>10:00 - 18:00, Dushanba - Shanba
         </p>
         <div className="follow">
-          <h4>Follow Us</h4>
+          <h4>Bizni Kuzating</h4>
           <div className="icon">
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-twitter"></i>
             <i className="fab fa-instagram"></i>
-            <i className="fab fa-youtube"></i>
+            <i className="fab fa-telegram"></i>
           </div>
         </div>
       </div>
 
       <div className="col">
-        <h4>About</h4>
-        <a href="#">About Us</a>
-        <a href="#">Delivery Information</a>
-        <a href="#">Contact Us</a>
+        <h4>Haqida</h4>
+        <a href="/About">Biz haqimizda</a>
+        <a href="#">Yetkazib berish haqida ma'lumot</a>
+        <a href="/Contact">Biz bilan bog'lanish</a>
       </div>
 
       <div className="col">
-        <h4>My Account</h4>
-        <a href="#">View Cart</a>
-        <a href="#">My Orders</a>
-        <a href="#">Help</a>
+        <h4>Mening hisobim</h4>
+        <a href="/Cart">Savatni ko'rish</a>
+        <a href="#">Mening Buyurtmalarim</a>
+        <a href="/Contact">Yordam</a>
       </div>
 
       <div className="col install">
@@ -48,7 +46,7 @@ function Footer() {
       </div>
 
       <div className="copyright">
-        <p>2023, Created by Mashhur Yuldoshev</p>
+        <p>&#169; 2023, Created by Mashhur Yuldoshev, All Rights Reserved</p>
       </div>
     </footer>
   );

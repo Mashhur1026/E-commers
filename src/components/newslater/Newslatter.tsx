@@ -4,15 +4,15 @@ function Newslatter() {
   return (
     <section id="newsletter">
       <div className="newstext">
-        <h4>Sign Up For Newsletters</h4>
+        <h4>Yangi mahsulotlardan xabardor bo'lish uchun obuna bo'ling</h4>
         <p>
-          Get E-mail updates about our latest shop and
-          <span> special offers.</span>
+          Bizning <span> maxsus takliflar</span> haqida elektron pochta orqali
+          habardor bo'ling
         </p>
       </div>
       <div className="form">
-        <input type="text" placeholder="Your email address" />
-        <button className="normol">Sign Up</button>
+        <input type="text" placeholder="Emailinggiz" />
+        <button className="normol">Ro'yxatdan o'tish</button>
       </div>
     </section>
   );

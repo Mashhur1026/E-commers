@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DataContext, { CartItem } from "../../DataContext";
 import "./singlePage.css";
+import Notiflix from "notiflix";
 
 function SinglePage() {
   const { id } = useParams();
@@ -52,6 +53,11 @@ function SinglePage() {
       };
       contextValue?.singleAddCard?.(newItem);
     }
+    if (selectedSize === null) {
+      Notiflix.Notify.warning("Iltmos razmer tanlang");
+    } else {
+      Notiflix.Notify.success("Tavar savatga qoshild");
+    }
   };
   return (
     <>
@@ -99,7 +105,7 @@ function SinglePage() {
               value={quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
-            <button onClick={handleAddToCart}>Add To Cart</button>
+            <button onClick={handleAddToCart}>Savatga qo'shish</button>
             <h4>Product Details</h4>
             <span>{singleProductUse?.[0].des}</span>
           </div>

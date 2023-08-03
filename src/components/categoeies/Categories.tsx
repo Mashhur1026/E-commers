@@ -18,7 +18,7 @@ function Categories() {
   return (
     <>
       <div id="categories" className="categories">
-        <h1>Categories</h1>
+        <h1>Kategoriyalar</h1>
       </div>
 
       <section id="feature">
