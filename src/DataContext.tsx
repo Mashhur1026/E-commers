@@ -58,6 +58,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const singleReady = array.filter((cartItem) => cartItem.id === id);
     setSingleProductUse(singleReady);
   };
+
   const singleAddCard = (newItem: CartItem) => {
     const existingItem = cartItems.find(
       (item) =>
