@@ -60,7 +60,6 @@ function SinglePage() {
         desc: singleProductUse.desc,
       };
       contextValue?.singleAddCard?.(newItem);
-      console.log(newItem);
     }
     if (selectedSize === null) {
       Notiflix.Notify.warning("Iltmos razmer tanlang");

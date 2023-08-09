@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import "./checkout.css";
 import DataContext from "../../DataContext";
 import { Link } from "react-router-dom";
+import axios from "../../api/axios";
+import Notiflix from "notiflix";
 
 function CheckOut() {
   const contextValue = useContext(DataContext);
@@ -32,11 +34,25 @@ function CheckOut() {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form values:", formValues);
-    console.log("Total:", total);
-    console.log("Cart items:", cartItems);
+    try {
+      const response = await axios.post("/postcard", {
+        cardItems: cartItems,
+        totalPrice: total,
+        userInfo: {
+          userName: formValues.ismingiz,
+          sureName: formValues.familiyangiz,
+          phoneNumber: formValues.telefon,
+          message: formValues.qoshmcha,
+        },
+      });
+      console.log(response.data);
+      Notiflix.Notify.success("Buyurtma movaqiyatli amalga oshdi");
+    } catch (error) {
+      Notiflix.Notify.failure("Buyurtma amalga oshmadi");
+      console.log(error);
+    }
   };
 
   return (
@@ -54,11 +70,11 @@ function CheckOut() {
           </thead>
           <tbody>
             {cartItems.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>
-                  <img src={item.img[0]} alt="" />
+                  <img src={item.images[0]} alt="" />
                 </td>
-                <td>{item.sizes}</td>
+                <td>{item.size}</td>
                 <td>${item.price}</td>
                 <td>{item.quantity}</td>
               </tr>
