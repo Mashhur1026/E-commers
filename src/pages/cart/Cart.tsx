@@ -31,7 +31,7 @@ function Cart() {
           </thead>
           <tbody>
             {cartItems.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>
                   <button
                     onClick={() => {
@@ -43,22 +43,16 @@ function Cart() {
                   </button>
                 </td>
                 <td>
-                  <img src={item.img[0]} alt="" />
+                  <img src={item.images[0]} alt="" />
                 </td>
                 <td>{item.name}</td>
                 <td>
-                  <select>
-                    {item.sizes.map((size) => (
-                      <option key={size} value={size}>
-                        {size}
-                      </option>
-                    ))}
-                  </select>
+                  {item.size.map((size) => (
+                    <p key={size}>{size}</p>
+                  ))}
                 </td>
                 <td>${item.price}</td>
-                <td>
-                  <input type="number" value={item.quantity} />
-                </td>
+                <td>{item.quantity}</td>
               </tr>
             ))}
           </tbody>

@@ -1,35 +1,44 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import DataContext, { CartItem } from "../../DataContext";
 import "./singlePage.css";
 import Notiflix from "notiflix";
+import axios from "../../api/axios";
+import DataContext from "../../DataContext";
+
+interface CartItem {
+  _id: number;
+  images: string[];
+  category: string;
+  name: string;
+  price: number;
+  size: string[];
+  desc: string;
+  quantity: number;
+}
 
 function SinglePage() {
   const { id } = useParams();
+  const productId = id;
   const contextValue = useContext(DataContext);
-  const { singleProduct } = contextValue ?? {};
-  const productId = id ? parseInt(id, 10) : null;
+  const [singleProductUse, setSingleProductUse] = useState<CartItem>();
+  const [mainImgUrl, setMainImgUrl] = useState<string>();
 
-  const [singleProductUse, setSingleProductUse] = useState<CartItem[] | null>(
-    null
-  );
+  async function getProductData() {
+    try {
+      const response = await axios.get(`/single?singleId=${productId}`);
+      setSingleProductUse(response.data);
+
+      if (response.data.images.length > 0) {
+        setMainImgUrl(response.data.images[0]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-    if (productId !== null) {
-      singleProduct?.(productId);
-    }
-  }, [productId]);
-
-  useEffect(() => {
-    setSingleProductUse(contextValue ? contextValue.singleProductUse : null);
-    if (contextValue?.singleProductUse) {
-      setMainImgUrl(contextValue.singleProductUse?.[0].img[0]);
-    }
-  }, [contextValue]);
-
-  const [mainImgUrl, setMainImgUrl] = useState<string>(
-    singleProductUse?.[0].img[0] || ""
-  );
+    getProductData();
+  }, []);
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -41,17 +50,17 @@ function SinglePage() {
   const handleAddToCart = () => {
     if (singleProductUse && selectedSize) {
       const newItem: CartItem = {
-        id: singleProductUse[0].id,
-        img: [mainImgUrl],
-        category: singleProductUse[0].category,
-        cname: singleProductUse[0].cname,
-        name: singleProductUse[0].name,
-        price: singleProductUse[0].price,
+        _id: singleProductUse._id,
+        images: [mainImgUrl || ""],
+        category: singleProductUse.category,
+        name: singleProductUse.name,
+        price: singleProductUse.price,
         quantity: quantity,
-        sizes: [selectedSize],
-        des: singleProductUse[0].des,
+        size: [selectedSize],
+        desc: singleProductUse.desc,
       };
       contextValue?.singleAddCard?.(newItem);
+      console.log(newItem);
     }
     if (selectedSize === null) {
       Notiflix.Notify.warning("Iltmos razmer tanlang");
@@ -68,10 +77,10 @@ function SinglePage() {
               src={mainImgUrl}
               width="100%"
               id="mainImg"
-              alt={singleProductUse[0].name}
+              alt={singleProductUse.name}
             />
             <div className="small-img-group">
-              {singleProductUse?.[0].img.map((item) => (
+              {singleProductUse.images.map((item) => (
                 <div
                   className="small-img-col"
                   key={item}
@@ -81,7 +90,7 @@ function SinglePage() {
                     src={item}
                     width="100%"
                     className="small-img"
-                    alt={singleProductUse[0].name}
+                    alt={singleProductUse.name}
                   />
                 </div>
               ))}
@@ -89,12 +98,12 @@ function SinglePage() {
           </div>
 
           <div className="single-pro-details">
-            <h6>Home / {singleProductUse?.[0].category}</h6>
-            <h4>{singleProductUse?.[0].name}</h4>
-            <h2>${singleProductUse?.[0].price}</h2>
+            <h6>Home / {singleProductUse.category}</h6>
+            <h4>{singleProductUse.name}</h4>
+            <h2>${singleProductUse.price}</h2>
             <select required onChange={(e) => setSelectedSize(e.target.value)}>
               <option value="">Select Size</option>
-              {singleProductUse?.[0].sizes.map((size) => (
+              {singleProductUse.size.map((size) => (
                 <option key={size} value={size}>
                   {size}
                 </option>
@@ -107,7 +116,7 @@ function SinglePage() {
             />
             <button onClick={handleAddToCart}>Savatga qo'shish</button>
             <h4>Product Details</h4>
-            <span>{singleProductUse?.[0].des}</span>
+            <span>{singleProductUse.desc}</span>
           </div>
         </section>
       )}

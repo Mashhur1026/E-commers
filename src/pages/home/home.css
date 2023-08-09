@@ -1,5 +1,4 @@
 #hero {
-  background-image: url(../../assets/banner-3.png);
   height: 90vh;
   width: 100%;
   background-size: cover;
@@ -35,7 +34,7 @@
   margin: 15px 0 20px 0;
 }
 
-#hero button {
+#hero a {
   background-image: url(../../assets/button.png);
   background-color: transparent;
   color: #088178;
@@ -45,6 +44,7 @@
   cursor: pointer;
   font-weight: 700;
   font-size: 15px;
+  text-decoration: none;
 }
 
 @media (max-width: 799px) {
@@ -74,7 +74,7 @@
   #hero p {
     font-size: 13px;
   }
-  #hero button {
+  #hero a {
     padding: 14px 38px 10px 65px;
     font-weight: 700;
     font-size: 13px;

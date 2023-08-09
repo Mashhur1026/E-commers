@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 function Categories() {
   const array = [
     { img: bag, name: "Sumkalar" },
-    { img: buj, name: "Bijuteriyalar" },
-    { img: woman, name: "Ayollar Ko'ylaklar" },
-    { img: man, name: "Erkaklar Ko'ylaklar" },
-    { img: sneakers, name: "Oyoq kyimlar" },
+    { img: buj, name: "Bujiteriyalar" },
+    { img: woman, name: "Oyollar Ko'ylaklari" },
+    { img: man, name: "Erkaklar Ko'ylaklari" },
+    { img: sneakers, name: "Oyoq Kiyimlar" },
   ];
 
   return (

@@ -1,31 +1,27 @@
-import { array } from "../src/components/products/Products";
 import { createContext, useEffect, useState } from "react";
 
 interface DataContextValue {
-  cartItems: CartItem[];
-  removeItem: (newItem: CartItem) => void;
-  singleProduct: (id: number) => void;
+  cartItems: Item[];
+  removeItem: (newItem: Item) => void;
   total: number;
-  singleProductUse: CartItem[];
-  singleAddCard: (newItem: CartItem) => void;
+  singleAddCard: (newItem: Item) => void;
 }
 
-export interface CartItem {
-  id: number;
-  img: string[];
+export interface Item {
+  _id: number;
+  images: string[];
   category: string;
-  cname: string;
   name: string;
   price: number;
+  size: string[];
+  desc: string;
   quantity: number;
-  sizes: string[];
-  des: string;
 }
 
 const DataContext = createContext<DataContextValue | null>(null);
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<Item[]>([]);
   //Total card
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -36,14 +32,14 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     setTotal(newTotal);
   }, [cartItems]);
   // RemoveFrom card
-  const removeItem = (newItem: CartItem) => {
+  const removeItem = (newItem: Item) => {
     const removedArray = cartItems.filter((item) => {
-      const idMatch = item.id === newItem.id;
-      const sizesMatch = item.sizes.every(
-        (size, index) => size === newItem.sizes[index]
+      const idMatch = item._id === newItem._id;
+      const sizesMatch = item.size.every(
+        (size, index) => size === newItem.size[index]
       );
-      const imgMatch = item.img.every(
-        (img, index) => img === newItem.img[index]
+      const imgMatch = item.images.every(
+        (img, index) => img === newItem.images[index]
       );
 
       return !(idMatch && sizesMatch && imgMatch);
@@ -53,26 +49,21 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   // Add to card
-  const [singleProductUse, setSingleProductUse] = useState<CartItem[]>(array);
-  const singleProduct = (id: number) => {
-    const singleReady = array.filter((cartItem) => cartItem.id === id);
-    setSingleProductUse(singleReady);
-  };
 
-  const singleAddCard = (newItem: CartItem) => {
+  const singleAddCard = (newItem: Item) => {
     const existingItem = cartItems.find(
       (item) =>
-        item.id === newItem.id &&
-        item.sizes.every((size, index) => size === newItem.sizes[index]) &&
-        item.img.every((img, index) => img === newItem.img[index])
+        item._id === newItem._id &&
+        item.size.every((size, index) => size === newItem.size[index]) &&
+        item.images.every((img, index) => img === newItem.images[index])
     );
 
     if (existingItem) {
       setCartItems((prevCartItems) =>
         prevCartItems.map((item) =>
-          item.id === newItem.id &&
-          item.sizes.every((size, index) => size === newItem.sizes[index]) &&
-          item.img.every((img, index) => img === newItem.img[index])
+          item._id === newItem._id &&
+          item.size.every((size, index) => size === newItem.size[index]) &&
+          item.images.every((img, index) => img === newItem.images[index])
             ? { ...item, quantity: item.quantity + newItem.quantity }
             : item
         )
@@ -85,8 +76,6 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const contextValue: DataContextValue = {
     cartItems,
     removeItem,
-    singleProduct,
-    singleProductUse,
     total,
     singleAddCard,
   };
