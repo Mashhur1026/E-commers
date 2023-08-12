@@ -75,7 +75,7 @@ function CheckOut() {
                   <img src={item.images[0]} alt="" />
                 </td>
                 <td>{item.size}</td>
-                <td>${item.price}</td>
+                <td>{item.price} UZS</td>
                 <td>{item.quantity}</td>
               </tr>
             ))}
@@ -89,7 +89,7 @@ function CheckOut() {
             <tbody>
               <tr>
                 <td>Cart Subtotal</td>
-                <td>${total}</td>
+                <td>{total} UZS</td>
               </tr>
               <tr>
                 <td>Cargo</td>
@@ -100,7 +100,7 @@ function CheckOut() {
                   <strong>Total</strong>
                 </td>
                 <td>
-                  <strong>${total}</strong>
+                  <strong>{total} UZS</strong>
                 </td>
               </tr>
             </tbody>

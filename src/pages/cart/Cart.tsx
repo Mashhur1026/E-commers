@@ -51,7 +51,7 @@ function Cart() {
                     <p key={size}>{size}</p>
                   ))}
                 </td>
-                <td>${item.price}</td>
+                <td>{item.price} UZS</td>
                 <td>{item.quantity}</td>
               </tr>
             ))}
@@ -66,7 +66,7 @@ function Cart() {
             <tbody>
               <tr>
                 <td>Savat jami</td>
-                <td>${total}</td>
+                <td>{total} UZS</td>
               </tr>
               <tr>
                 <td>Cargo</td>
@@ -77,7 +77,7 @@ function Cart() {
                   <strong>Jami</strong>
                 </td>
                 <td>
-                  <strong>${total}</strong>
+                  <strong>{total} UZS</strong>
                 </td>
               </tr>
             </tbody>

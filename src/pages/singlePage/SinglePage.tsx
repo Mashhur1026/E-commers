@@ -14,6 +14,7 @@ interface CartItem {
   size: string[];
   desc: string;
   quantity: number;
+  company: string;
 }
 
 function SinglePage() {
@@ -58,6 +59,7 @@ function SinglePage() {
         quantity: quantity,
         size: [selectedSize],
         desc: singleProductUse.desc,
+        company: singleProductUse.company,
       };
       contextValue?.singleAddCard?.(newItem);
     }
@@ -97,9 +99,11 @@ function SinglePage() {
           </div>
 
           <div className="single-pro-details">
-            <h6>Home / {singleProductUse.category}</h6>
+            <h6>
+              Home / {singleProductUse.category} / {singleProductUse.company}
+            </h6>
             <h4>{singleProductUse.name}</h4>
-            <h2>${singleProductUse.price}</h2>
+            <h2>{singleProductUse.price} UZS</h2>
             <select required onChange={(e) => setSelectedSize(e.target.value)}>
               <option value="">Select Size</option>
               {singleProductUse.size.map((size) => (
