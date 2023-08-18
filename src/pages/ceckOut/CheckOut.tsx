@@ -58,7 +58,7 @@ function CheckOut() {
   return (
     <>
       <section id="chechout">
-        <h1>Checkout</h1>
+        <h1>To'lov</h1>
         <table width="100%">
           <thead>
             <tr>
@@ -84,11 +84,11 @@ function CheckOut() {
       </section>
       <section id="checkoutTotal">
         <div id="subtotal">
-          <h3>Cart Total</h3>
+          <h3>Savat jami</h3>
           <table>
             <tbody>
               <tr>
-                <td>Cart Subtotal</td>
+                <td>Savat oraliq jami</td>
                 <td>{total} UZS</td>
               </tr>
               <tr>
@@ -97,7 +97,7 @@ function CheckOut() {
               </tr>
               <tr>
                 <td>
-                  <strong>Total</strong>
+                  <strong>Jami</strong>
                 </td>
                 <td>
                   <strong>{total} UZS</strong>
@@ -107,7 +107,7 @@ function CheckOut() {
           </table>
           <div>
             <Link to={`/Cargo`}>
-              <h4>What is cargo?</h4>
+              <h4>Cargo nima?</h4>
             </Link>
           </div>
         </div>
@@ -142,7 +142,7 @@ function CheckOut() {
             placeholder="Qoshmcha malumot"
             name="qoshmcha"
           ></textarea>
-          <button>Submit</button>
+          <button>Yuborish</button>
         </form>
       </section>
     </>

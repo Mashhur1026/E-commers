@@ -8,8 +8,8 @@ function Shop() {
   return (
     <>
       <BlogComponent
-        title="#stayhome"
-        text="Save more with coupons & up to 70% off!"
+        title="#uyda qoling"
+        text="Kuponlar va 70% gacha chegirma bilan ko'proq tejang!"
         img="shop-bg"
       />
       <Categories />

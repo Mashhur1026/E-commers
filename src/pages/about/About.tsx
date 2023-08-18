@@ -6,7 +6,7 @@ function About() {
   return (
     <>
       <BlogComponent
-        title="#KnowUs"
+        title="#BizniBiling"
         text="Lorem ipsum, dolor sit amet consectetur adipisicing"
         img="about-bg"
       />

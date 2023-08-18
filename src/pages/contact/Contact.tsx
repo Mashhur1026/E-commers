@@ -5,15 +5,15 @@ function UserInfo() {
   return (
     <>
       <BlogComponent
-        title="#let's_talk"
-        text="LEAVE A MESSAGE, We love to hear from you!"
+        title="#keling gaplashamiz"
+        text="XABAR QOLDIRING, biz sizdan eshitishni yaxshi ko'ramiz!"
         img="about-bg"
       />
       <section id="contact-details" className="section-p1">
         <div className="details">
-          <span>GET IN TOUCH</span>
+          <span>ALOQA BO'LING</span>
           <h2>Lorem ipsum dolor sit amet consectetur adipisicing.</h2>
-          <h3>Head Office</h3>
+          <h3>Bosh idora</h3>
           <div>
             <li>
               <i className="fal fa-map"></i>
@@ -29,7 +29,7 @@ function UserInfo() {
             </li>
             <li>
               <i className="far fa-clock"></i>
-              <p>Monday to Saturday: 9.00am to 16pm</p>
+              <p>Dushanbadan shanbagacha: 9.00 dan 16.00 gacha</p>
             </li>
           </div>
         </div>
@@ -46,13 +46,13 @@ function UserInfo() {
       </section>
       <section id="form-details">
         <form action="">
-          <span>LEAVE A MESSAGE</span>
-          <h2>We love to hear from you</h2>
+          <span>XABAR QOLDIRISH</span>
+          <h2>Biz sizdan eshitishni yaxshi ko'ramiz</h2>
           <input type="text" placeholder="Your name" />
           <input type="text" placeholder="E-mail" />
           <input type="text" placeholder="Subject" />
           <textarea placeholder="Your message"></textarea>
-          <button>Submit</button>
+          <button>Yuborish</button>
         </form>
       </section>
     </>

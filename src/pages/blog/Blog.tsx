@@ -29,8 +29,8 @@ function Blog() {
   return (
     <>
       <BlogComponent
-        title="#readmore"
-        text="Read all case studies about our products!"
+        title="#ko'proq o'qish"
+        text="Mahsulotlarimiz haqidagi barcha misollarni o'qing!"
         img="blog-bg"
       />
       <section id="blog">
@@ -42,7 +42,7 @@ function Blog() {
             <div className="blog-details">
               <h4>{blog.title}</h4>
               <p>{blog.text}</p>
-              <a href="#">CONTINUE READING</a>
+              <a href="#">O'QISHDA DAVOM ETISH</a>
             </div>
             <h1>{blog.number}</h1>
           </div>

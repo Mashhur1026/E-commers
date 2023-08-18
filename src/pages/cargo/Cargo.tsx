@@ -4,9 +4,9 @@ import "./cargo.css";
 function Cargo() {
   return (
     <div id="cargo">
-      <BlogComponent img="cargo-bg" title="#What is cargo?" text="" />
+      <BlogComponent img="cargo-bg" title="#Cargo nima?" text="" />
       <div className="des">
-        <h1>Let's know more about cargo!</h1>
+        <h1>Keling, yuk haqida ko'proq bilib olaylik!</h1>
         <p>
           CARGO bu - SOLIQ yani chet eldan, chet davlatlardan O'zbekistonga xar
           qanday yuk olib kirayotganda Davlat budjetiga to'lanadigon pul❗️ Bu

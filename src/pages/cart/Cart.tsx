@@ -13,8 +13,8 @@ function Cart() {
   return (
     <>
       <BlogComponent
-        title="#lets_talk"
-        text="Lorem ipsum dolor, sit amet consectetur adipisicing elit."
+        title="#xarid qilish vaqti"
+        text="tez, qulay, onson va sifatli"
         img="about-bg"
       />
       <section id="cart">

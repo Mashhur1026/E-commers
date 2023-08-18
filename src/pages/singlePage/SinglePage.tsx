@@ -100,12 +100,12 @@ function SinglePage() {
 
           <div className="single-pro-details">
             <h6>
-              Home / {singleProductUse.category} / {singleProductUse.company}
+              Asosiy / {singleProductUse.category} / {singleProductUse.company}
             </h6>
             <h4>{singleProductUse.name}</h4>
             <h2>{singleProductUse.price} UZS</h2>
             <select required onChange={(e) => setSelectedSize(e.target.value)}>
-              <option value="">Select Size</option>
+              <option value="">Hajmi tanlang</option>
               {singleProductUse.size.map((size) => (
                 <option key={size} value={size}>
                   {size}
@@ -118,7 +118,7 @@ function SinglePage() {
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
             <button onClick={handleAddToCart}>Savatga qo'shish</button>
-            <h4>Product Details</h4>
+            <h4>Mahsulot tafsilotlari</h4>
             <span>{singleProductUse.desc}</span>
           </div>
         </section>
